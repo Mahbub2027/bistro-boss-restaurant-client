@@ -1,5 +1,5 @@
 
-const Cover = ({img,title}) => {
+const Cover = ({img, title}) => {
     return (
         <div className=" hero h-[90vh]" style={{ backgroundImage: `url("${img}")` }}>
             <div className="hero-overlay bg-black bg-opacity-50"></div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Cover from "../../shared/Cover/Cover";
 import MenuItems from "../../shared/MenuItems/MenuItems";
 
@@ -14,6 +15,8 @@ const MenuCategory = ({items, title, img}) => {
                         ></MenuItems>)
                 }
             </div>
+            <Link to={`/order/${title}`} className="flex justify-center">
+            <button className="btn btn-outline border-0 border-b-4">View Full  Menu</button></Link>
         </div>
     );
 };
