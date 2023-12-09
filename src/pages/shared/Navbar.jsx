@@ -1,21 +1,31 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
+
     const navOptions = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/contact'>Contact us</NavLink></li>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li><NavLink to='/menu'>Our menu</NavLink></li>
         <li><NavLink to='/order/salad'>Our shop</NavLink></li>
+        <li><NavLink to='/'>
+            <button className="flex items-center gap-1">
+                <FaShoppingCart className=""></FaShoppingCart>
+                <div className="badge badge-secondary">+{cart.length}</div>
+            </button>
+        </NavLink></li>
     </>
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         logOut()
-        .then(()=>{})
-        .catch(error=>console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     return (
         <div>
@@ -39,13 +49,13 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <>
-                        <p>{user?.displayName}</p>
-                        <img className="w-10 h-10 rounded-full mx-2" src={user?.photoURL} alt="" />
-                        <button onClick={handleLogout} className="btn btn-warning">Logout</button>
+                            <p>{user?.displayName}</p>
+                            <img className="w-10 h-10 rounded-full mx-2" src={user?.photoURL} alt="" />
+                            <button onClick={handleLogout} className="btn btn-warning">Logout</button>
                         </> :
-                        <>
-                        <Link to='/login'><button className="btn btn-warning">Login</button></Link>
-                        </>
+                            <>
+                                <Link to='/login'><button className="btn btn-warning">Login</button></Link>
+                            </>
                     }
                 </div>
             </div>
