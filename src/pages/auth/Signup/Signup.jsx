@@ -3,24 +3,41 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import SocialLogin from "../../../components/SocialLinks/SocialLogin";
 
 const Signup = () => {
+    const axiosPublic = useAxiosPublic();
     const {createUser, updateUserProfile} = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const navigate = useNavigate();
     const onSubmit = (data) => {
         console.log(data)
-
+ 
         createUser(data.email, data.password)
         .then(result=>{
             const loggedUser = result.user;
             console.log(loggedUser);
 
             updateUserProfile(data.name, data.photo)
-            .then(()=>{})
+            .then(()=>{
+                // create users for database
+                const userInfo = {
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res=> {
+                    if(res.data.insertedId){
+                        console.log("user data entered in database")
+                        reset();
+                        navigate('/');
+                    }
+                })
+            })
             .catch(error=>console.log(error))
 
-            navigate('/');
+            
         })
         .catch(error=>{
             console.log(error)
@@ -82,8 +99,9 @@ const Signup = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <input type="submit" className="btn btn-primary" />
+                                <input type="submit" value='Register' className="btn btn-primary text-base text-white" />
                             </div>
+                            <SocialLogin></SocialLogin>
 
                             <p>Already have an account? Please <Link to='/login' className='text-orange-500 font-bold'>Login</Link></p>
                         </form>

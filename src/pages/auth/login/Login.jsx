@@ -3,6 +3,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../../../provider/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from '../../../components/SocialLinks/SocialLogin';
 
 const Login = () => {
     
@@ -89,6 +90,9 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <input disabled={disabled} type="submit" className="btn btn-primary" value='Login' />
+                            </div>
+                            <div>
+                                <SocialLogin></SocialLogin>
                             </div>
 
                             <p>New here? Please <Link to='/signup' className='text-orange-500 font-bold'>Register</Link></p>

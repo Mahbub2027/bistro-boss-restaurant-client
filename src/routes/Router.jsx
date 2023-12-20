@@ -5,6 +5,10 @@ import Menu from "../pages/MenuPages/Menu/Menu";
 import Order from "../pages/ShopPages/Order/Order";
 import Login from "../pages/auth/login/Login";
 import Signup from "../pages/auth/Signup/Signup";
+import Dashboard from "../layout/Dashboard";
+import Cart from "../pages/Dashboard/Cart/Cart";
+import PrivateRoutes from "./PrivateRoutes";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 
 const router = createBrowserRouter([
@@ -31,6 +35,21 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+        children: [
+            {
+                path: 'cart',
+                element: <Cart></Cart>
+            },
+            // addmin user
+            {
+                path: 'allusers',
+                element: <AllUsers></AllUsers>
             },
         ]
     }
