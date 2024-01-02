@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 <li><NavLink to='/dashboard/myBooking'>
                                     <FaList></FaList>
                                     My Booking</NavLink></li>
-                                <li><NavLink to='/dashboard/myBooking'>
+                                <li><NavLink to='/dashboard/addReview'>
                                     <FaAd></FaAd>
                                     Add Review</NavLink></li>
                             </>

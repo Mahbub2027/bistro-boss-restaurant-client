@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useCart from "../../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [cart, refetch] = useCart();
@@ -29,7 +30,7 @@ const Cart = () => {
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",
-                            icon: "success"
+                            icon: "success" 
                           });
                     }
                 })
@@ -46,7 +47,11 @@ const Cart = () => {
             <div className="flex justify-around text-4xl">
                 <h2>Total Order: {cart.length}</h2>
                 <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-                <button className="btn btn-warning">Pay</button>
+                {
+                    cart.length ? 
+                    <Link to="/dashboard/payment"><button className="btn btn-warning">Pay</button></Link> :
+                    <button disabled className="btn btn-warning">Pay</button>
+                }
             </div>
 
 
