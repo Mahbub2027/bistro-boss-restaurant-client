@@ -28,7 +28,7 @@ const FoodCart = ({ item }) => {
                 price,
             }
 
-            // axios.post('http://localhost:5000/carts', cartItem)  [ axios only without using hooks]
+            // axios.post('https://bistro-boss-restaurant-server-ten.vercel.app/carts', cartItem)  [ axios only without using hooks]
             axiosSecure.post('/carts', cartItem)
                 .then(res => {
                     console.log(res.data)
