@@ -2,7 +2,7 @@
 
 ## Bistro-boss-restaurant
 
-# * [Client-side-link](https://bistro-boss-restaurant-server-ten.vercel.app/)
+* # [Client-side-live-link](https://bistro-boss-e3982.web.app)
 
 
 
